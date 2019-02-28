@@ -1,0 +1,86 @@
+.plane {
+    /* height: 450px; */
+    height: 100%;
+    width: 100%;
+    display: -webkit-flex;
+    /* Safari */
+    display: inline-flex;
+    flex-wrap: wrap;
+    background-color: #ffefd5;
+    border-radius:5px;
+}
+
+.brcls {
+    flex-basis: 100%;
+    display: flex;
+}
+
+.color {
+    width: 107px;
+    height: 107px;
+    display: inline-block;
+    margin: 1px;
+    text-align: center;
+    line-height: 110px;
+    background-color: #afeeee;
+    border-radius:15px;
+    font-size:36px; 
+    color:white;
+}
+
+.colory {
+    width: 107px;
+    height: 107px;
+    display: inline-block;
+    margin: 1px;
+    text-align: center;
+    line-height: 110px;
+    background-color: #ffefd5;
+    border-radius:15px;
+    font-size:36px; 
+    color:white;
+}
+
+.colorg {
+    width: 107px;
+    height: 107px;
+    display: inline-block;
+    margin: 1px;
+    text-align: center;
+    line-height: 110px;
+    background-color: #43e687;
+    border-radius:15px;
+    font-size:36px; 
+    color:white;
+}
+
+select{
+    font-family: "微软雅黑";
+    margin:5px;
+    background: rgba(0,0,0,0);
+    width: 55px;
+    height: 40px;
+    font-size: 18px;
+    color: black;
+    text-align: center;
+    border: 1px #1a1a1a solid;
+    border-radius: 5px;
+}
+option{
+    color: black;
+    background: #A6E1EC;
+    line-height: 20px;
+}
+select:focus{
+    border: 2px #ddd solid;
+    box-shadow: 0 0 15px 1px #DDDDDD;
+}
+option:hover{
+    background: #EBCCD1;
+}
+
+
+.boxbr {
+    /* height: 148px; */
+}
+
