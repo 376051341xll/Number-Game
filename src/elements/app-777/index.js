@@ -1,24 +1,47 @@
 //游戏初始化
 import { define, WeElement } from 'omi'
 import style from './_index.css'
-
+import logo from './logo.png'
 import '../box-777'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 
 define('app-777', class extends WeElement {
   // static observe = true
   static get data() {
     return { numcount:[] }
   }
+  
   data = {
     intime: null,
     bossIndex:0 // 关键index
   }
+
+
   install() { // 初始化
-    this.randNumCount()
+    this.randNumCount();
+   // dayjs.extend(relativeTime)
   }
   installed() {
-    
+  //  this.interBarDate()
   }
+/*
+
+  interBarDate() {
+    setInterval(() => {
+        this.barDateSet()        
+    }, 300);
+}
+barDateSet() {
+    let bdate = '0'
+    bdate = dayjs(bdate).add(300, 's')
+    const nowDay = dayjs()
+    this.store.intertBarTime('倒计时'+bdate.diff(nowDay,'second')+'s')
+}
+
+
+*/
+
   revNumCount = (index, nide) => { // 转换
     // console.log('index-revcount',index,nide)
     // this.data.bossIndex=index
@@ -47,15 +70,19 @@ define('app-777', class extends WeElement {
     })
     if (isResult) {
       alert('恭喜发财，通关成功！')
-      this.upLevel()
+     this.store.clearsteps();
+
+      this.upLevel();
+      
+  
     }
   }
   upLevel() {
     // 升级难度
     let level=this.store.data.si+1
-    this.randNumCount(level*level,level)
+    this.randNumCount(level*level,level);
+    
   }
-
 
   //初始化游戏
   randNumCount(kk=9,si=3) { 
@@ -212,14 +239,32 @@ define('app-777', class extends WeElement {
     if (evt.target.value) {
       let num=Number(evt.target.value)
       this.randNumCount(num*num,num)  
+      this.store.clearsteps();
     }
     
   }
+
+
+
+
+
+
   
   // item,index,this.data.globalSi
   render(props,data, store) {
     return (
+      
       <div>
+           <div class="time">
+           <div>
+           <img type='button' 
+            src={logo}
+            class="app-logo"
+            alt="logo"/>
+            </div>
+           <h1>{this.store.data.steps}  步 || <life-love></life-love>
+           </h1>
+           </div>
           <div>
         <select onChange={this.changeSel} value={this.store.data.si} placeholder="change size">
           <option value="3">3*3</option>
@@ -229,12 +274,14 @@ define('app-777', class extends WeElement {
         </select>
       
           </div> 
-        <div class="plane" style={{width:this.store.data.si*109 +'px'}} >
+        <div class="plane" onClick={this.store.addsteps()} style={{width:this.store.data.si*109 +'px'}} >
         
           {this.store.data.numcount.map((item,index) => {
+       
           if (index % this.store.data.si === 0) {
             if(item==""){
-              return (<box-777   onClick={this.clickBox.bind(this,item,index)} text={item} index={index} class="colory" ></box-777>)
+              
+              return (<box-777 onClick={this.clickBox.bind(this,item,index)} text={item} index={index} class="colory" ></box-777>)
             }
             else{
               if(index+1==item){
@@ -245,7 +292,7 @@ define('app-777', class extends WeElement {
           } 
           else {
             if(item==""){
-              return (<box-777   onClick={this.clickBox.bind(this,item,index)} text={item} index={index} class="colory" ></box-777>)
+              return (<box-777  onClick={this.clickBox.bind(this,item,index)} text={item} index={index} class="colory" ></box-777>)
             }
             else{
               if(index+1==item){
@@ -253,12 +300,14 @@ define('app-777', class extends WeElement {
               }
             return (<box-777   onClick={this.clickBox.bind(this,item,index)} text={item} index={index} class="color" ></box-777>)  
             }
+           
           }
+          
           
           
       })}  
         </div>
-      
+       
       </div>
     )
   }

@@ -10,6 +10,19 @@
     border-radius:5px;
 }
 
+.time {
+	background-color: #222;
+	height: 150px;
+	padding: 20px;
+	color: white;
+}
+
+.app-logo {
+	/*animation: app-logo-spin infinite 20s linear;*/
+	height: 80px;
+}
+
+
 .brcls {
     flex-basis: 100%;
     display: flex;
@@ -77,10 +90,5 @@ select:focus{
 }
 option:hover{
     background: #EBCCD1;
-}
-
-
-.boxbr {
-    /* height: 148px; */
 }
 

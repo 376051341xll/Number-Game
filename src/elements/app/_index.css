@@ -2,17 +2,8 @@
 	text-align: center;
 }
 
-.app-logo {
-	/*animation: app-logo-spin infinite 20s linear;*/
-	height: 80px;
-}
 
-.app-header {
-	background-color: #222;
-	height: 150px;
-	padding: 20px;
-	color: white;
-}
+
 
 .app-title {
 	font-size: 1.5em;
@@ -45,13 +36,7 @@
 }
  
  
-#timer{
-	position:absolute;
-	top:90px;
-	left:60px;
-	font-size:38px;
-}
- 
+
 #btn{
 	position:absolute;
 	top:180px;

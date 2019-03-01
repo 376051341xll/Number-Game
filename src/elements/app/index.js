@@ -51,6 +51,8 @@ define('my-app', class extends WeElement {
     return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
   }*/
  
+
+  
   css() {
     return style
   }
@@ -59,17 +61,7 @@ define('my-app', class extends WeElement {
     return (
       <div class="app">
         <header class="app-header">
-          <img
-            src={logo}
-            onClick={this.clickHandler}
-            class="app-logo"
-            alt="logo"
-          />
-
-
-
-          
-          <h1 class="app-title">{store.data.name}</h1>
+        
         </header>
 
 
@@ -79,8 +71,9 @@ define('my-app', class extends WeElement {
         <div class="content">
           <app-777  />
         </div>
-        <life-love></life-love>
+        <div style="height:50px"></div>
       </div>
+      
     )
   }
 })
