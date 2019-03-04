@@ -67,7 +67,7 @@
     color:white;
 }
 
-select{
+.select1{
     font-family: "微软雅黑";
     margin:5px;
     background: rgba(0,0,0,0);
@@ -79,16 +79,29 @@ select{
     border: 1px #1a1a1a solid;
     border-radius: 5px;
 }
-option{
+.option1{
     color: black;
-    background: #A6E1EC;
+    background: white;
     line-height: 20px;
 }
-select:focus{
+.select:focus{
     border: 2px #ddd solid;
     box-shadow: 0 0 15px 1px #DDDDDD;
 }
-option:hover{
+.option:hover{
     background: #EBCCD1;
 }
 
+.memo {
+    background-color:#afeeee;
+    border:none;
+    color:white;
+    padding:15px 32px;
+    text-align:center;
+    text-decoration:none;
+    display:inline-block;
+    font-size:16px;
+    margin:4px 2px;
+    cursor: pointer;
+
+}

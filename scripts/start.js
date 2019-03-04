@@ -40,7 +40,7 @@ if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
 }
 
 // 设置打开的端口
-const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 8088;
+const DEFAULT_PORT = parseInt(process.env.PORT, 10) || 8888;
 const HOST = process.env.HOST || '0.0.0.0';
 
 if (process.env.HOST) {

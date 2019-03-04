@@ -1,4 +1,18 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueResource from 'vue-resource'
+import axios from 'axios'
+import qs from 'qs';
+/* eslint-disable no-new */
+
+// 此处需要use后，this.$http.get或者this.$http.post才可以
+Vue.use(VueRouter)
+Vue.use(VueResource)
+
+
 export default {
+
+  name:'hello',
   data: {
     name: '点击倒计时',
     dateBar: '',
@@ -6,17 +20,45 @@ export default {
     steps:-1,
     totalTime: 300,
     content: '移动数字即开始倒计时',
-    canClick: true
+    canClick: true,
+
+    info:{},
+    infolen:[]
   },
   
 
-  rename(name) {
-    this.data.name = name
+  filters: {
+    currencydecimal (value) {
+      return value.toFixed(2)
+    }
   },
-  intertBarTime(dateBar = '') {
-    // console.log('date-bar');
-    this.data.dateBar = dateBar
-  },
+  
+
+  
+//axio代替ajax请求数据,显示数据信息
+showmemo() { 
+  axios.
+  get('http://localhost:3000')
+  .then(response => {
+    for(let i=0; i<response.data.length;i++)
+    {
+      this.data.info[i]=JSON.stringify(response.data[i])
+      this.data.infolen[i]=i;
+      
+    }
+    /*console.log(JSON.parse(this.data.info[0]))
+    console.log(JSON.parse(this.data.info[1]))
+    console.log(this.data.infolen.length)*/
+  
+
+  
+  })
+  .catch(error => {
+    console.log(error)
+    this.errored = true
+  })
+},
+
   revNumcount(index, nide) {
     // console.log('store-click', index)
     let vap = this.data.numcount[nide]
@@ -44,7 +86,7 @@ export default {
   addsteps(){
    
     this.data.steps=this.data.steps+1;
-    console.log(this.data.steps)
+    
     if(this.data.steps==2){
       this.countDown();
     }
@@ -53,6 +95,7 @@ export default {
 //清空步数
   clearsteps(){
     this.data.steps=0;
+   
   }
 ,
 
@@ -62,7 +105,7 @@ countDown () {
   if (!this.data.canClick) return  //
   this.data.canClick = false
   this.data.content = '倒计时'+this.data.totalTime + 's'
-
+  console.log(this.data.content)
   //梯度算法，保证倒计时一直正常运行
   let clock = window.setInterval(() => {
    this.data.totalTime--
@@ -84,7 +127,51 @@ countDown () {
   
  },
 
- 
-}
+
+   //当前时间
+   timeFormate(timeStamp) {
+    let year = new Date(timeStamp).getFullYear();
+    let month =new Date(timeStamp).getMonth() + 1 < 10? "0" + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1;
+    let date =new Date(timeStamp).getDate() < 10? "0" + new Date(timeStamp).getDate(): new Date(timeStamp).getDate();
+    let hh =new Date(timeStamp).getHours() < 10? "0" + new Date(timeStamp).getHours(): new Date(timeStamp).getHours();
+    let mm =new Date(timeStamp).getMinutes() < 10? "0" + new Date(timeStamp).getMinutes(): new Date(timeStamp).getMinutes();
+    // let ss =new Date(timeStamp).getSeconds() < 10? "0" + new Date(timeStamp).getSeconds(): new Date(timeStamp).getSeconds();
+    // return year + "年" + month + "月" + date +"日"+" "+hh+":"+mm ;
+    this.nowTime = year + "年" + month + "月" + date +"日"+" "+hh+":"+mm ;
+    return this.nowTime;
+    //console.log(this.nowTime);
+  },
+// 定时器函数
+  nowTimes(){
+    let a= this.timeFormate(new Date());
+   
+    return a
+  },
+
+  intertBarTime() {
+    // console.log('date-bar');
+    this.data.dateBar = this.nowTimes();
+   
+  },
+
+
+  addmemo(si) { 
+   console.log(this.data.steps)
+    
+    let data= {"time":this.data.dateBar=this.nowTimes(),"level":si+'*'+si,"step1":this.data.steps,"time1":300-this.data.totalTime};
+    console.log(data)
+    axios.post('http://localhost:3000/add',qs.stringify(data,{ indices: false }),{headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
+    .then(res=>{
+      console.log('res=>',res);            
+  })
+    .catch(error => {
+      console.log(error)
+      this.errored = true
+    })
+  
+   },
 
  
+
+ 
+}

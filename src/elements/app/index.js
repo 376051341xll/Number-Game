@@ -3,6 +3,7 @@ import logo from './logo.png'
 import style from './_index.css'
 import '../app-777'
 import '../life-love'
+import '../hello'
 
 define('my-app', class extends WeElement {
   static get data() {
@@ -71,7 +72,7 @@ define('my-app', class extends WeElement {
         <div class="content">
           <app-777  />
         </div>
-        <div style="height:50px"></div>
+        <hello-element  />
       </div>
       
     )

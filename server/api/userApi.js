@@ -10,23 +10,16 @@ var $sql = require('../sqlMap');
 var conn = mysql.createConnection(models.mysql);
 
 conn.connect();
-var jsonWrite = function(res, ret) {
-    if(typeof ret === 'undefined') {
-        res.json({
-            code: '1',
-            msg: '操作失败'
-        });
-    } else {
-        res.json(ret);
-    }
-};
 
-// 增加用户接口
-router.post('/addUser', (req, res) => {
-    var sql = $sql.user.add;
+
+
+
+// 增加记录
+router.post('/addmemo', (req, res) => {
+    var sql = $sql.memo.add;
     var params = req.body;
     console.log(params);
-    conn.query(sql, [params.username, params.age], function(err, result) {
+    conn.query(sql, [params.current_time, params.step1,params.time1], function(err, result) {
         if (err) {
             console.log(err);
         }
@@ -35,5 +28,12 @@ router.post('/addUser', (req, res) => {
         }
     })
 });
+
+//将记录打印出来
+router.get('/api/getmemo', (req, res, next) => {
+    res.json({
+        data: '后台返回结果 getArticle'
+      })
+  })
 
 module.exports = router;

@@ -5,6 +5,7 @@ import logo from './logo.png'
 import '../box-777'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import $ from 'jquery' ;
 
 define('app-777', class extends WeElement {
   // static observe = true
@@ -42,6 +43,7 @@ barDateSet() {
 
 */
 
+
   revNumCount = (index, nide) => { // 转换
     // console.log('index-revcount',index,nide)
     // this.data.bossIndex=index
@@ -69,10 +71,13 @@ barDateSet() {
       return elex == index + 1 || index == array.length - 1
     })
     if (isResult) {
-      alert('恭喜发财，通关成功！')
-     this.store.clearsteps();
+      
+      this.store.addmemo(this.store.data.si)
 
-      this.upLevel();
+      alert('恭喜发财，通关成功！记录已保存')
+       this.store.clearsteps();
+       this.upLevel();
+    
       
   
     }
@@ -81,6 +86,8 @@ barDateSet() {
     // 升级难度
     let level=this.store.data.si+1
     this.randNumCount(level*level,level);
+   
+    
     
   }
 
@@ -185,7 +192,6 @@ barDateSet() {
  
   clickBox = (text,index) => {
     // 规则 根据下标 获取相邻四个位置（上index-si 下index+si 左index-1 右index+1）值
-    
     console.log('val', this.countValBy(index, 'up'), this.countValBy(index, 'down'), this.countValBy(index, 'left'), this.countValBy(index, 'right'))
     // console.log('list',this.store.data.numcount)
     
@@ -243,18 +249,13 @@ barDateSet() {
     }
     
   }
-
-
-
-
-
-
   
   // item,index,this.data.globalSi
   render(props,data, store) {
     return (
       
       <div>
+       
            <div class="time">
            <div>
            <img type='button' 
@@ -262,20 +263,23 @@ barDateSet() {
             class="app-logo"
             alt="logo"/>
             </div>
+       
+       
            <h1>{this.store.data.steps}  步 || <life-love></life-love>
            </h1>
            </div>
           <div>
-        <select onChange={this.changeSel} value={this.store.data.si} placeholder="change size">
-          <option value="3">3*3</option>
-          <option value="4">4*4</option>
-          <option value="5">5*5</option>
-          <option value="6">6*6</option>
+
+        <select class='select1' onChange={this.changeSel} value={this.store.data.si} placeholder="change size">
+          <option class='option1' value="3">3*3</option>
+          <option  class='option1' value="4">4*4</option>
+          <option  class='option1' value="5">5*5</option>
+          <option  class='option1' value="6">6*6</option>
         </select>
-      
+       
           </div> 
+         
         <div class="plane" onClick={this.store.addsteps()} style={{width:this.store.data.si*109 +'px'}} >
-        
           {this.store.data.numcount.map((item,index) => {
        
           if (index % this.store.data.si === 0) {
@@ -307,7 +311,6 @@ barDateSet() {
           
       })}  
         </div>
-       
       </div>
     )
   }

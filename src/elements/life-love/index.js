@@ -10,33 +10,34 @@ define('life-love', class extends WeElement {
   static get data() {
     return { dateBar: '' }
   }
-    install() {
-        dayjs.extend(relativeTime)
-  }
-    installed() {
-        this.interBarDate()
-    
-    }
-    interBarDate() {
-        setInterval(() => {
-            this.barDateSet()        
-        }, 300);
-    }
-    barDateSet() {
-        let bdate = '0'
-        bdate = dayjs(bdate).add(300, 's')
-        const nowDay = dayjs()
-        this.store.intertBarTime('倒计时'+bdate.diff(nowDay,'second')+'s')
-    }
-  
-  css() {
-    return style
-  }
+   
+  install() {
+    dayjs.extend(relativeTime)
+}
+installed() {
+    this.interBarDate()
+
+}
+interBarDate() {
+    setInterval(() => {
+        this.barDateSet()        
+    }, 1000);
+}
+barDateSet() {
+    let bdate = '2019-02-26'
+    bdate = dayjs(bdate).add(100, 'year')
+    const nowDay = dayjs()
+    this.store.intertBarTime(bdate.diff(nowDay,'day')+'-day,'+bdate.diff(nowDay,'month')+'-month,'+bdate.diff(nowDay,'hour')+'-hour,'+bdate.diff(nowDay,'minute')+'-minute,'+bdate.diff(nowDay,'second')+'-second')
+}
+
+css() {
+return style
+}
 
  render(props, data, store) {
     return (
       
-       <a type="button">{this.store.data.content}</a>
+       <a type="button" >{this.store.data.content}</a>
     
     )
   }
