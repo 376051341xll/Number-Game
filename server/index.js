@@ -93,6 +93,7 @@ app.post('/add', urlencodedParser, function (req, res) {
         }
     });
     var modSql = "UPDATE memo SET level = '"+response.level+"',step = '"+response.step+"',time='"+response.time+"' WHERE memo ='"+response.memo+"' ?";
+    var modSqlParams = ['数字华华容道', 'http://localhost:3000/add',6];
     connection.query(modSql,modSqlParams,function (err, result) {
      if(err){
          console.log('[UPDATE ERROR] - ',err.message);

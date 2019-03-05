@@ -54,7 +54,7 @@ define('hello-element', class extends WeElement {
            <th>{JSON.parse(this.store.data.info[item]).memo}</th>
            <th>{JSON.parse(this.store.data.info[item]).level}</th>
            <th>{JSON.parse(this.store.data.info[item]).step}</th>
-           <th>{JSON.parse(this.store.data.info[item]).time}</th>
+           <th>{JSON.parse(this.store.data.info[item]).time+'s'}</th>
            </tr>)
        
 
