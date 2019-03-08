@@ -69,10 +69,14 @@ define('my-app', class extends WeElement {
 
 
         
-        <div class="content">
+        <div class="content" >
           <app-777  />
         </div>
-        <hello-element  />
+       
+     
+      <div>
+      <tip-element />
+      </div>
       </div>
       
     )

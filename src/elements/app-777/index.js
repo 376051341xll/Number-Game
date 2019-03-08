@@ -2,6 +2,7 @@
 import { define, WeElement } from 'omi'
 import style from './_index.css'
 import logo from './logo.png'
+import title from './title.gif'
 import '../box-777'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
@@ -26,22 +27,9 @@ define('app-777', class extends WeElement {
   installed() {
   //  this.interBarDate()
   }
-/*
-
-  interBarDate() {
-    setInterval(() => {
-        this.barDateSet()        
-    }, 300);
-}
-barDateSet() {
-    let bdate = '0'
-    bdate = dayjs(bdate).add(300, 's')
-    const nowDay = dayjs()
-    this.store.intertBarTime('倒计时'+bdate.diff(nowDay,'second')+'s')
-}
 
 
-*/
+
 
 
   revNumCount = (index, nide) => { // 转换
@@ -72,9 +60,9 @@ barDateSet() {
     })
     if (isResult) {
       
-      this.store.addmemo(this.store.data.si)
-
+      
       alert('恭喜发财，通关成功！记录已保存')
+      this.store.addmemo(this.store.data.si)
        this.store.clearsteps();
        this.upLevel();
     
@@ -120,6 +108,7 @@ barDateSet() {
     this.initNumber()
     
   }
+
   initNumber() { // 随机打乱
     // 随机下标 随机移动
     let i = 0
@@ -190,6 +179,8 @@ barDateSet() {
     return style 
   }
  
+
+  //点击box事件
   clickBox = (text,index) => {
     // 规则 根据下标 获取相邻四个位置（上index-si 下index+si 左index-1 右index+1）值
     console.log('val', this.countValBy(index, 'up'), this.countValBy(index, 'down'), this.countValBy(index, 'left'), this.countValBy(index, 'right'))
@@ -232,6 +223,7 @@ barDateSet() {
     }
     return type+'='+myval;
   }
+
   revoleCountByIndexAndType(index,nide) {
     // console.log('revole');
     // let vap = this.data.globalCount[nide]
@@ -240,6 +232,7 @@ barDateSet() {
     // this.fire('revoleval', { index: index, nide })
     this.revNumCount(index,nide)
   }
+
   changeSel = evt => {
     // console.log(evt.target.value)
     if (evt.target.value) {
@@ -247,6 +240,7 @@ barDateSet() {
       this.randNumCount(num*num,num)  
       this.store.clearsteps();
     }
+  
     
   }
   
@@ -254,19 +248,20 @@ barDateSet() {
   render(props,data, store) {
     return (
       
-      <div>
+      <div >
        
            <div class="time">
-           <div>
-           <img type='button' 
-            src={logo}
-            class="app-logo"
-            alt="logo"/>
-            </div>
+          
+             <img class='title'  src={title} />
+       
+           <div class='logo'>
+          
+            
        
        
-           <h1>{this.store.data.steps}  步 || <life-love></life-love>
+           <h1 style='margin-top:5%'>{this.store.data.steps}  步 || <life-love></life-love>
            </h1>
+           </div>
            </div>
           <div>
 
@@ -276,10 +271,33 @@ barDateSet() {
           <option  class='option1' value="5">5*5</option>
           <option  class='option1' value="6">6*6</option>
         </select>
-       
-          </div> 
-         
-        <div class="plane" onClick={this.store.addsteps()} style={{width:this.store.data.si*109 +'px'}} >
+        
+<div>
+        <div class='div-a'>
+        <a onClick={this.store.showmemo()}> 游戏记录</a>
+      
+        <table class='table1'>
+          <tr>
+          <th>时间</th>
+              <th>等级</th>
+              <th>步数</th>
+             <th>用时s</th>
+            </tr>
+            {this.store.data.infolen.map((item,index) => {
+             
+                return (<tr>
+              <th>{JSON.parse(this.store.data.info[item]).memo}</th>
+              <th>{JSON.parse(this.store.data.info[item]).level}</th>
+              <th>{JSON.parse(this.store.data.info[item]).step}</th>
+             <th>{JSON.parse(this.store.data.info[item]).time+'s'}</th>
+                </tr>)     
+                })
+                }
+                 </table>
+                  
+        </div>       
+
+        <div class="plane div-b"   onClick={this.store.addsteps()}   style={{width:this.store.data.si*109 +'px'}} >
           {this.store.data.numcount.map((item,index) => {
        
           if (index % this.store.data.si === 0) {
@@ -311,6 +329,8 @@ barDateSet() {
           
       })}  
         </div>
+        </div>
+  </div>
       </div>
     )
   }

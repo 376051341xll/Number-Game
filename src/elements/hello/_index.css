@@ -1,9 +1,8 @@
 .hello {
-	text-align: center;
-
-	
+    text-align: center;
+    height: 50px;
 	width: 50%;
-	margin-top:150px;
+	margin-top:450px;
 	margin-left: 25%;
     margin-right: 25%;
     padding-bottom:5%;
@@ -64,15 +63,15 @@
 }
 
 .table1{
-	margin-left: 25%;
-	margin-right: 25%;
+	margin-left: 15%;
+	margin-right: 5%;
 	font-size: 16px
 
 }
 
 table,td,th
 {
-	border:1px solid black;
+	border:1px solid grey;
 }
 td
 {

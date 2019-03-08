@@ -2,7 +2,7 @@
 import { define, WeElement } from 'omi'
 import style from './_index.css'
 
-define('hello-element', class extends WeElement {
+define('tip-element', class extends WeElement {
   static get data() {
     return { name: '' }
   }
@@ -36,36 +36,8 @@ define('hello-element', class extends WeElement {
     render(props, data, store) {
       return (
         
-        <div class='hello'>
-        <a  onClick={this.store.showmemo()} style='font-size:25px'>游戏记录</a>
-        <table class='table1'>
-          <tr>
-            <th>时间</th>
-            <th>等级</th>
-            <th>步数</th>
-            <th>所用时间s</th>
-            </tr>
-            {this.store.data.infolen.map((item,index) => {
-
-       console.log(item)
-     
-   
-         return (<tr>
-           <th>{JSON.parse(this.store.data.info[item]).memo}</th>
-           <th>{JSON.parse(this.store.data.info[item]).level}</th>
-           <th>{JSON.parse(this.store.data.info[item]).step}</th>
-           <th>{JSON.parse(this.store.data.info[item]).time+'s'}</th>
-           </tr>)
-       
-
-      
-       
-       
-   })}  
-
-         
-            
-                </table>
+        <div class='hello' >
+       <h4>将表中数字按顺序 从左到右 从上到下 末尾为空 即可</h4>
         </div>
         
       )

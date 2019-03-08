@@ -23,7 +23,8 @@ export default {
     canClick: true,
 
     info:{},
-    infolen:[]
+    infolen:[],
+    button:-1
   },
   
 
@@ -33,10 +34,15 @@ export default {
     }
   },
   
-
+clickbutton(){
+  this.data.button=this.data.button+1;
+  console.log('按钮'+this.data.button)
+},
   
 //axio代替ajax请求数据,显示数据信息
 showmemo() { 
+  this.data.button=this.data.button+1;
+  console.log('按钮'+this.data.button)
   axios.
   get('http://localhost:3000')
   .then(response => {
@@ -44,12 +50,10 @@ showmemo() {
     {
       this.data.info[i]=JSON.stringify(response.data[i])
       this.data.infolen[i]=i;
+     
       
     }
-    /*console.log(JSON.parse(this.data.info[0]))
-    console.log(JSON.parse(this.data.info[1]))
-    console.log(this.data.infolen.length)*/
-  
+   
 
   
   })
@@ -155,13 +159,12 @@ countDown () {
   },
 
 
-  addmemo(si) { 
-   console.log(this.data.steps)
-    
+  addmemo(si) {  
     let data= {"time":this.data.dateBar=this.nowTimes(),"level":si+'*'+si,"step1":this.data.steps,"time1":300-this.data.totalTime};
     console.log(data)
     axios.post('http://localhost:3000/add',qs.stringify(data,{ indices: false }),{headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
     .then(res=>{
+      
       console.log('res=>',res);            
   })
     .catch(error => {

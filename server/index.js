@@ -36,7 +36,7 @@ connection.on('error', function (err) {
         throw err;
     }
 });
-
+/*
 var sql = 'SELECT * FROM memo';
 var str = " ";
 connection.query(sql, function (err,result) {
@@ -50,7 +50,7 @@ connection.query(sql, function (err,result) {
 });
 
 
-
+*/
 
 
 
@@ -67,8 +67,20 @@ app.use(bodyParser.urlencoded({
   }))
 
 app.get('/',function (req,res) {
-    res.send(str);  //服务器响应请求
-    return res;
+    var str=''
+    connection.query("SELECT * FROM memo",function(err,result){
+        if(err){
+            res.send("显示失败"+err);
+        }else {
+            str = JSON.stringify(result);
+            console.log(str)
+            res.send(str)
+        }
+       
+    });
+    
+ 
+
 });
 
 

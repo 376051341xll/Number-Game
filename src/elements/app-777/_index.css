@@ -12,9 +12,10 @@
 
 .time {
 	background-color: #222;
-	height: 150px;
+	height: 120px;
 	padding: 20px;
-	color: white;
+    color: white;
+  
 }
 
 .app-logo {
@@ -105,3 +106,33 @@
     cursor: pointer;
 
 }
+
+
+.table1{
+	margin-left: 25%;
+	margin-right: 5%;
+	font-size: 16px
+
+}
+
+table,td,th
+{
+	border:1px solid grey;
+}
+td
+{
+	text-align:right;
+}
+
+.div-a{ float:left;width:40%;border:1px } 
+
+.div-b{ float:left;width:49%;margin-left: 0% ;border:1px } 
+
+.title{ 
+    float:left;
+    width:25%;
+    margin-bottom: 10px
+
+} 
+
+.logo{ float:left;width:46%;margin-right: 10%;margin-left: 2%} 
